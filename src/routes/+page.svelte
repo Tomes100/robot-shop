@@ -32,9 +32,8 @@
 </script>
 
 <svelte:head>
-  <title>Robot Programming Resources | KUKA, ABB, Fanuc Templates | Prime Robotics</title>
+  <title>Robot Programming Resources | KUKA, ABB, Fanuc | Prime Robotics</title>
   <meta name="description" content="Quick reference guides and production-ready code templates for industrial robots. KUKA KRL, ABB RAPID, Fanuc Karel, UR, Comau, Yaskawa. Created by engineers, for engineers.">
-  <meta name="keywords" content="KUKA KRL, ABB RAPID, Fanuc Karel, robot programming, code templates, industrial robots">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -43,7 +42,6 @@
   <meta property="og:title" content="Robot Programming Resources | Prime Robotics">
   <meta property="og:description" content="Quick references and production-ready templates for KUKA, ABB, Fanuc, UR, Comau, and Yaskawa robots.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://shop.prime-robotics.eu">
   
   <!-- Schema.org -->
   {@html `<script type="application/ld+json">
@@ -62,35 +60,44 @@
   </script>`}
 </svelte:head>
 
-<div class="shop">
-  <!-- Hero Section -->
-  <header class="hero">
-    <p class="eyebrow">From the factory floor to your desk</p>
-    <h1>Robot Programming<br><span class="gradient">Made Easier</span></h1>
-    <p class="subtitle">Quick reference guides and production-ready code templates for KUKA, ABB, Fanuc, UR, Comau & Yaskawa — created by an engineer with 8+ years on the line.</p>
-    
-    <div class="social-proof">
-      <span class="proof-badge">✓ Used by engineers at automotive plants across Europe</span>
-    </div>
-    
-    <div class="hero-cta">
-      <button class="btn-primary" onclick={() => document.getElementById('products').scrollIntoView({behavior: 'smooth'})}>
-        Browse Resources
-      </button>
-      {#if freeProduct}
-        <button class="btn-free" onclick={() => checkout(freeProduct)}>
-          Get Free KUKA Reference →
-        </button>
-      {/if}
+<div class="page">
+  <!-- Header -->
+  <header class="header">
+    <div class="header-content">
+      <a href="https://prime-robotics.eu" class="logo">
+        <span class="logo-prime">PRIME</span>
+        <span class="logo-robotics">ROBOTICS</span>
+      </a>
+      <a href="https://prime-robotics.eu/contact" class="btn-contact">Contact</a>
     </div>
   </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <p class="hero-tag">Digital Resources for Robot Programmers</p>
+      <h1>Quick References &<br><span class="highlight">Code Templates</span></h1>
+      <p class="hero-subtitle">Production-ready resources for KUKA, ABB, Fanuc, UR, Comau & Yaskawa — created by an engineer with 8+ years on the factory floor.</p>
+      
+      <div class="hero-cta">
+        <a href="#products" class="btn-primary">Browse Resources</a>
+        {#if freeProduct}
+          <button class="btn-secondary" onclick={() => checkout(freeProduct)}>
+            Get Free KUKA Reference →
+          </button>
+        {/if}
+      </div>
+      
+      <p class="hero-proof">✓ Used by engineers at automotive plants across Europe</p>
+    </div>
+  </section>
 
   <!-- Free Lead Magnet -->
   {#if freeProduct}
   <section class="free-section">
     <div class="free-card">
-      <div class="free-badge">FREE</div>
-      <div class="free-content">
+      <div class="free-left">
+        <span class="free-badge">FREE</span>
         <h2>{freeProduct.name}</h2>
         <p>{freeProduct.description}</p>
         <p class="free-note">No email required. Instant download.</p>
@@ -102,28 +109,23 @@
   </section>
   {/if}
 
+  <!-- Products -->
   <main id="products">
     <!-- Reference Guides -->
-    <section class="category">
-      <div class="category-header">
+    <section class="section">
+      <div class="section-header">
         <h2>📚 Quick Reference Guides</h2>
         <p>3-page cheat sheets with the commands you actually use. Print them, keep them on your phone, or stick them on your monitor.</p>
       </div>
       <div class="grid">
         {#each references as product}
           <article class="card">
-            <div class="card-top">
-              <span class="brand-tag">{product.brand}</span>
-            </div>
+            <span class="card-brand">{product.brand}</span>
             <h3>{product.name}</h3>
-            <p class="description">{product.description}</p>
+            <p>{product.description}</p>
             <div class="card-footer">
-              <div class="price">€{product.price}</div>
-              <button 
-                class="btn-buy" 
-                onclick={() => checkout(product)} 
-                disabled={loading === product.id}
-              >
+              <span class="card-price">€{product.price}</span>
+              <button class="btn-buy" onclick={() => checkout(product)} disabled={loading === product.id}>
                 {loading === product.id ? '...' : 'Buy Now'}
               </button>
             </div>
@@ -133,32 +135,28 @@
     </section>
 
     <!-- Code Templates -->
-    <section class="category">
-      <div class="category-header">
+    <section class="section">
+      <div class="section-header">
         <h2>💻 Production-Ready Templates</h2>
-        <p>Skip the boilerplate. These templates include error handling, I/O management, gripper control, and inline documentation — ready for your next project.</p>
+        <p>Skip the boilerplate. These templates include error handling, I/O management, gripper control, and inline documentation.</p>
       </div>
       <div class="grid">
         {#each templates as product}
           <article class="card">
-            <div class="card-top">
-              <span class="brand-tag">{product.brand}</span>
-              <span class="type-tag">Template</span>
+            <div class="card-tags">
+              <span class="card-brand">{product.brand}</span>
+              <span class="card-type">Template</span>
             </div>
             <h3>{product.name}</h3>
-            <p class="description">{product.description}</p>
-            <ul class="features">
+            <p>{product.description}</p>
+            <ul class="card-features">
               <li>✓ Error handling included</li>
               <li>✓ I/O & gripper control</li>
               <li>✓ Fully documented</li>
             </ul>
             <div class="card-footer">
-              <div class="price">€{product.price}</div>
-              <button 
-                class="btn-buy" 
-                onclick={() => checkout(product)} 
-                disabled={loading === product.id}
-              >
+              <span class="card-price">€{product.price}</span>
+              <button class="btn-buy" onclick={() => checkout(product)} disabled={loading === product.id}>
                 {loading === product.id ? '...' : 'Buy Now'}
               </button>
             </div>
@@ -168,31 +166,25 @@
     </section>
 
     <!-- Bundles -->
-    <section class="category">
-      <div class="category-header">
+    <section class="section">
+      <div class="section-header">
         <h2>🎁 Bundles — Best Value</h2>
         <p>Save time and money with curated packages.</p>
       </div>
       <div class="grid">
         {#each bundles as product}
-          <article class="card featured">
-            <div class="card-top">
-              <span class="featured-tag">⭐ Featured</span>
-            </div>
+          <article class="card card-featured">
+            <span class="card-featured-tag">⭐ Featured</span>
             <h3>{product.name}</h3>
-            <p class="description">{product.description}</p>
-            <ul class="features">
+            <p>{product.description}</p>
+            <ul class="card-features">
               <li>✓ Multiple robot brands</li>
               <li>✓ Production-tested code</li>
               <li>✓ Save vs. buying separately</li>
             </ul>
             <div class="card-footer">
-              <div class="price">€{product.price}</div>
-              <button 
-                class="btn-buy featured-btn" 
-                onclick={() => checkout(product)} 
-                disabled={loading === product.id}
-              >
+              <span class="card-price">€{product.price}</span>
+              <button class="btn-buy btn-featured" onclick={() => checkout(product)} disabled={loading === product.id}>
                 {loading === product.id ? '...' : 'Get Bundle'}
               </button>
             </div>
@@ -207,17 +199,17 @@
     <h2>Why These Resources?</h2>
     <div class="trust-grid">
       <div class="trust-item">
-        <span class="trust-icon">🏭</span>
+        <div class="trust-icon">🏭</div>
         <h3>Factory-Tested</h3>
         <p>Created from real projects at automotive plants, not textbook examples.</p>
       </div>
       <div class="trust-item">
-        <span class="trust-icon">⚡</span>
+        <div class="trust-icon">⚡</div>
         <h3>Time-Saving</h3>
         <p>Stop rewriting the same error handling code. Start with something that works.</p>
       </div>
       <div class="trust-item">
-        <span class="trust-icon">📖</span>
+        <div class="trust-icon">📖</div>
         <h3>Well-Documented</h3>
         <p>Every template includes inline comments explaining the why, not just the what.</p>
       </div>
@@ -226,21 +218,17 @@
 
   <!-- About -->
   <section class="about">
-    <div class="about-content">
-      <h2>Built by Someone Who Gets It</h2>
-      <p>I'm Calin, and I've spent 8+ years programming robots in automotive body shops across Europe — KUKA, ABB, Fanuc, Comau, you name it.</p>
-      <p>These resources are what I wish I had when I started. No fluff, no theory — just the practical stuff that makes your job easier.</p>
-      <p class="about-link">
-        <a href="https://prime-robotics.eu">Prime Robotics</a> — Custom robot programming & software
-      </p>
-    </div>
+    <h2>Built by Someone Who Gets It</h2>
+    <p>I'm Calin, and I've spent 8+ years programming robots in automotive body shops across Europe — KUKA, ABB, Fanuc, Comau, you name it.</p>
+    <p>These resources are what I wish I had when I started. No fluff, no theory — just the practical stuff that makes your job easier.</p>
+    <a href="https://prime-robotics.eu" class="about-link">Prime Robotics — Custom robot programming & software →</a>
   </section>
 
   <!-- Footer -->
   <footer class="footer">
     <div class="footer-content">
       <p>Questions? <a href="mailto:office@prime-robotics.eu">office@prime-robotics.eu</a></p>
-      <p class="copyright">© 2026 Prime Robotics S.R.L. Romania</p>
+      <p class="footer-copy">© 2026 Prime Robotics S.R.L. Romania</p>
     </div>
   </footer>
 </div>
@@ -248,34 +236,94 @@
 <style>
   :global(*) {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
   
   :global(body) {
-    margin: 0;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: #0f172a;
-    color: #f1f5f9;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: #fff;
+    color: #2B3C5B;
     line-height: 1.6;
   }
   
-  .shop {
+  .page {
     min-height: 100vh;
+  }
+  
+  /* Header */
+  .header {
+    background: #fff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  
+  .header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+  
+  .logo-prime {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #2B3C5B;
+    letter-spacing: 0.05em;
+  }
+  
+  .logo-robotics {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #05ACDC;
+    letter-spacing: 0.15em;
+  }
+  
+  .btn-contact {
+    background: #05ACDC;
+    color: #fff;
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.25rem;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+  }
+  
+  .btn-contact:hover {
+    background: #0398bf;
   }
   
   /* Hero */
   .hero {
+    background: linear-gradient(135deg, #2B3C5B 0%, #1e2a3f 100%);
+    color: #fff;
+    padding: 4rem 1.5rem;
+  }
+  
+  .hero-content {
     max-width: 800px;
     margin: 0 auto;
-    padding: 4rem 1.5rem 3rem;
     text-align: center;
   }
   
-  .eyebrow {
-    color: #60a5fa;
+  .hero-tag {
+    color: #05ACDC;
     font-size: 0.875rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.1em;
     margin-bottom: 1rem;
   }
   
@@ -283,35 +331,18 @@
     font-size: clamp(2rem, 5vw, 3rem);
     font-weight: 700;
     line-height: 1.2;
-    margin: 0 0 1.5rem;
+    margin-bottom: 1.5rem;
   }
   
-  .gradient {
-    background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  .highlight {
+    color: #05ACDC;
   }
   
-  .subtitle {
+  .hero-subtitle {
     font-size: 1.125rem;
-    color: #94a3b8;
+    color: #cbd5e1;
     max-width: 600px;
-    margin: 0 auto 1.5rem;
-  }
-  
-  .social-proof {
-    margin-bottom: 2rem;
-  }
-  
-  .proof-badge {
-    display: inline-block;
-    background: rgba(34, 197, 94, 0.1);
-    border: 1px solid rgba(34, 197, 94, 0.3);
-    color: #4ade80;
-    padding: 0.5rem 1rem;
-    border-radius: 2rem;
-    font-size: 0.875rem;
+    margin: 0 auto 2rem;
   }
   
   .hero-cta {
@@ -319,146 +350,157 @@
     gap: 1rem;
     justify-content: center;
     flex-wrap: wrap;
+    margin-bottom: 2rem;
   }
   
   .btn-primary {
-    background: #3b82f6;
-    color: white;
-    border: none;
+    background: #05ACDC;
+    color: #fff;
     padding: 0.875rem 2rem;
-    border-radius: 0.5rem;
+    border-radius: 0.25rem;
     font-weight: 600;
     font-size: 1rem;
+    text-decoration: none;
+    transition: background 0.2s;
+    border: none;
     cursor: pointer;
-    transition: all 0.2s;
   }
   
   .btn-primary:hover {
-    background: #2563eb;
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+    background: #0398bf;
   }
   
-  .btn-free {
+  .btn-secondary {
     background: transparent;
-    color: #4ade80;
-    border: 2px solid #4ade80;
+    color: #05ACDC;
     padding: 0.875rem 2rem;
-    border-radius: 0.5rem;
+    border-radius: 0.25rem;
     font-weight: 600;
     font-size: 1rem;
+    border: 2px solid #05ACDC;
     cursor: pointer;
     transition: all 0.2s;
   }
   
-  .btn-free:hover {
-    background: rgba(34, 197, 94, 0.1);
+  .btn-secondary:hover {
+    background: rgba(5, 172, 220, 0.1);
+  }
+  
+  .hero-proof {
+    color: #4ade80;
+    font-size: 0.9rem;
   }
   
   /* Free Section */
   .free-section {
-    max-width: 800px;
-    margin: 0 auto 3rem;
+    max-width: 900px;
+    margin: -2rem auto 0;
     padding: 0 1.5rem;
+    position: relative;
+    z-index: 10;
   }
   
   .free-card {
-    background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.05) 100%);
-    border: 2px solid rgba(34, 197, 94, 0.3);
-    border-radius: 1rem;
+    background: #fff;
+    border: 2px solid #4ade80;
+    border-radius: 0.5rem;
     padding: 2rem;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 2rem;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
     flex-wrap: wrap;
   }
   
-  .free-badge {
-    background: #22c55e;
-    color: #0f172a;
-    font-weight: 700;
-    padding: 0.5rem 1rem;
-    border-radius: 0.25rem;
-    font-size: 0.875rem;
-  }
-  
-  .free-content {
+  .free-left {
     flex: 1;
-    min-width: 200px;
+    min-width: 250px;
   }
   
-  .free-content h2 {
-    margin: 0 0 0.5rem;
+  .free-badge {
+    display: inline-block;
+    background: #4ade80;
+    color: #fff;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+  
+  .free-card h2 {
     font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: #2B3C5B;
   }
   
-  .free-content p {
+  .free-card p {
+    color: #64748b;
+    font-size: 0.9rem;
     margin: 0;
-    color: #94a3b8;
   }
   
   .free-note {
-    font-size: 0.875rem;
-    color: #64748b !important;
+    color: #94a3b8 !important;
+    font-size: 0.8rem !important;
     margin-top: 0.5rem !important;
   }
   
   .btn-download {
-    background: #22c55e;
-    color: #0f172a;
-    border: none;
+    background: #4ade80;
+    color: #fff;
     padding: 0.875rem 1.5rem;
-    border-radius: 0.5rem;
+    border-radius: 0.25rem;
     font-weight: 600;
+    border: none;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: background 0.2s;
     white-space: nowrap;
   }
   
   .btn-download:hover {
-    background: #16a34a;
-    transform: translateY(-2px);
+    background: #22c55e;
   }
   
   /* Main Content */
   main {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 4rem 1.5rem;
   }
   
-  /* Category Sections */
-  .category {
+  .section {
     margin-bottom: 4rem;
   }
   
-  .category-header {
+  .section-header {
     margin-bottom: 2rem;
   }
   
-  .category-header h2 {
+  .section-header h2 {
     font-size: 1.5rem;
-    margin: 0 0 0.5rem;
+    color: #2B3C5B;
+    margin-bottom: 0.5rem;
   }
   
-  .category-header p {
-    color: #94a3b8;
-    margin: 0;
+  .section-header p {
+    color: #64748b;
     max-width: 600px;
   }
   
-  /* Product Grid */
+  /* Grid */
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 1.5rem;
   }
   
-  /* Product Cards */
+  /* Cards */
   .card {
-    background: #1e293b;
-    border: 1px solid #334155;
-    border-radius: 0.75rem;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
@@ -466,72 +508,75 @@
   }
   
   .card:hover {
-    border-color: #475569;
-    transform: translateY(-4px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border-color: #05ACDC;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
   }
   
-  .card.featured {
+  .card-featured {
     border-color: #f59e0b;
-    background: linear-gradient(135deg, #1e293b 0%, #27201a 100%);
+    background: linear-gradient(135deg, #fffbeb 0%, #fff 100%);
   }
   
-  .card-top {
+  .card-tags {
     display: flex;
     gap: 0.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
   }
   
-  .brand-tag {
-    background: rgba(59, 130, 246, 0.2);
-    color: #60a5fa;
+  .card-brand {
+    display: inline-block;
+    background: rgba(5, 172, 220, 0.1);
+    color: #05ACDC;
     padding: 0.25rem 0.75rem;
     border-radius: 0.25rem;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 600;
     text-transform: uppercase;
+    margin-bottom: 0.75rem;
   }
   
-  .type-tag {
-    background: rgba(148, 163, 184, 0.2);
-    color: #94a3b8;
+  .card-type {
+    background: #f1f5f9;
+    color: #64748b;
     padding: 0.25rem 0.75rem;
     border-radius: 0.25rem;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 500;
   }
   
-  .featured-tag {
+  .card-featured-tag {
+    display: inline-block;
     background: rgba(245, 158, 11, 0.2);
-    color: #fbbf24;
+    color: #d97706;
     padding: 0.25rem 0.75rem;
     border-radius: 0.25rem;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 600;
+    margin-bottom: 0.75rem;
   }
   
   .card h3 {
-    font-size: 1.125rem;
-    margin: 0 0 0.75rem;
+    font-size: 1.1rem;
+    color: #2B3C5B;
+    margin-bottom: 0.75rem;
     line-height: 1.3;
   }
   
-  .description {
-    color: #94a3b8;
+  .card p {
+    color: #64748b;
     font-size: 0.9rem;
-    margin: 0 0 1rem;
     flex-grow: 1;
+    margin-bottom: 1rem;
   }
   
-  .features {
+  .card-features {
     list-style: none;
-    padding: 0;
     margin: 0 0 1.5rem;
-    font-size: 0.875rem;
-    color: #cbd5e1;
+    font-size: 0.85rem;
+    color: #475569;
   }
   
-  .features li {
+  .card-features li {
     margin-bottom: 0.5rem;
   }
   
@@ -539,29 +584,30 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: auto;
     padding-top: 1rem;
-    border-top: 1px solid #334155;
+    border-top: 1px solid #e5e7eb;
+    margin-top: auto;
   }
   
-  .price {
+  .card-price {
     font-size: 1.5rem;
     font-weight: 700;
+    color: #2B3C5B;
   }
   
   .btn-buy {
-    background: #3b82f6;
-    color: white;
-    border: none;
+    background: #05ACDC;
+    color: #fff;
     padding: 0.75rem 1.5rem;
-    border-radius: 0.5rem;
+    border-radius: 0.25rem;
     font-weight: 600;
+    border: none;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: background 0.2s;
   }
   
   .btn-buy:hover:not(:disabled) {
-    background: #2563eb;
+    background: #0398bf;
   }
   
   .btn-buy:disabled {
@@ -569,25 +615,25 @@
     cursor: not-allowed;
   }
   
-  .featured-btn {
+  .btn-featured {
     background: #f59e0b;
   }
   
-  .featured-btn:hover:not(:disabled) {
+  .btn-featured:hover:not(:disabled) {
     background: #d97706;
   }
   
   /* Trust Section */
   .trust {
-    background: #1e293b;
+    background: #f8fafc;
     padding: 4rem 1.5rem;
-    margin: 4rem 0;
   }
   
   .trust h2 {
     text-align: center;
-    margin: 0 0 3rem;
     font-size: 1.5rem;
+    color: #2B3C5B;
+    margin-bottom: 3rem;
   }
   
   .trust-grid {
@@ -605,66 +651,65 @@
   .trust-icon {
     font-size: 2.5rem;
     margin-bottom: 1rem;
-    display: block;
   }
   
   .trust-item h3 {
-    margin: 0 0 0.5rem;
-    font-size: 1.125rem;
+    font-size: 1.1rem;
+    color: #2B3C5B;
+    margin-bottom: 0.5rem;
   }
   
   .trust-item p {
-    margin: 0;
-    color: #94a3b8;
+    color: #64748b;
     font-size: 0.9rem;
   }
   
-  /* About Section */
+  /* About */
   .about {
     max-width: 700px;
     margin: 0 auto;
-    padding: 3rem 1.5rem;
+    padding: 4rem 1.5rem;
     text-align: center;
   }
   
   .about h2 {
-    margin: 0 0 1.5rem;
     font-size: 1.5rem;
+    color: #2B3C5B;
+    margin-bottom: 1.5rem;
   }
   
   .about p {
-    color: #94a3b8;
-    margin: 0 0 1rem;
+    color: #64748b;
+    margin-bottom: 1rem;
   }
   
   .about-link {
-    margin-top: 1.5rem !important;
-  }
-  
-  .about-link a {
-    color: #60a5fa;
+    display: inline-block;
+    color: #05ACDC;
     text-decoration: none;
+    font-weight: 600;
+    margin-top: 1rem;
   }
   
-  .about-link a:hover {
+  .about-link:hover {
     text-decoration: underline;
   }
   
   /* Footer */
   .footer {
-    border-top: 1px solid #1e293b;
+    background: #2B3C5B;
+    color: #fff;
     padding: 2rem 1.5rem;
     text-align: center;
   }
   
   .footer p {
-    margin: 0 0 0.5rem;
-    color: #64748b;
-    font-size: 0.875rem;
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
   }
   
   .footer a {
-    color: #60a5fa;
+    color: #05ACDC;
     text-decoration: none;
   }
   
@@ -672,22 +717,19 @@
     text-decoration: underline;
   }
   
-  .copyright {
-    color: #475569 !important;
+  .footer-copy {
+    color: #94a3b8;
+    font-size: 0.8rem !important;
   }
   
-  /* Mobile Responsive */
+  /* Mobile */
   @media (max-width: 640px) {
     .hero {
-      padding: 3rem 1rem 2rem;
+      padding: 3rem 1rem;
     }
     
     .hero h1 {
       font-size: 1.75rem;
-    }
-    
-    .subtitle {
-      font-size: 1rem;
     }
     
     .hero-cta {
@@ -699,12 +741,12 @@
       text-align: center;
     }
     
-    .grid {
-      grid-template-columns: 1fr;
+    .free-left {
+      text-align: center;
     }
     
-    .trust {
-      padding: 3rem 1rem;
+    .grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>
