@@ -88,7 +88,7 @@
         {/if}
       </div>
       
-      <p class="hero-proof">✓ Used by engineers at automotive plants across Europe</p>
+      <p class="hero-proof">Used by engineers at automotive plants across Europe</p>
     </div>
   </section>
 
@@ -114,7 +114,7 @@
     <!-- Reference Guides -->
     <section class="section">
       <div class="section-header">
-        <h2>📚 Quick Reference Guides</h2>
+        <h2>Quick Reference Guides</h2>
         <p>3-page cheat sheets with the commands you actually use. Print them, keep them on your phone, or stick them on your monitor.</p>
       </div>
       <div class="grid">
@@ -137,7 +137,7 @@
     <!-- Code Templates -->
     <section class="section">
       <div class="section-header">
-        <h2>💻 Production-Ready Templates</h2>
+        <h2>Production-Ready Templates</h2>
         <p>Skip the boilerplate. These templates include error handling, I/O management, gripper control, and inline documentation.</p>
       </div>
       <div class="grid">
@@ -150,9 +150,9 @@
             <h3>{product.name}</h3>
             <p>{product.description}</p>
             <ul class="card-features">
-              <li>✓ Error handling included</li>
-              <li>✓ I/O & gripper control</li>
-              <li>✓ Fully documented</li>
+              <li>Error handling included</li>
+              <li>I/O & gripper control</li>
+              <li>Fully documented</li>
             </ul>
             <div class="card-footer">
               <span class="card-price">€{product.price}</span>
@@ -168,19 +168,19 @@
     <!-- Bundles -->
     <section class="section">
       <div class="section-header">
-        <h2>🎁 Bundles — Best Value</h2>
+        <h2>Bundles — Best Value</h2>
         <p>Save time and money with curated packages.</p>
       </div>
       <div class="grid">
         {#each bundles as product}
           <article class="card card-featured">
-            <span class="card-featured-tag">⭐ Featured</span>
+            <span class="card-featured-tag">Featured</span>
             <h3>{product.name}</h3>
             <p>{product.description}</p>
             <ul class="card-features">
-              <li>✓ Multiple robot brands</li>
-              <li>✓ Production-tested code</li>
-              <li>✓ Save vs. buying separately</li>
+              <li>Multiple robot brands</li>
+              <li>Production-tested code</li>
+              <li>Save vs. buying separately</li>
             </ul>
             <div class="card-footer">
               <span class="card-price">€{product.price}</span>
@@ -199,17 +199,14 @@
     <h2>Why These Resources?</h2>
     <div class="trust-grid">
       <div class="trust-item">
-        <div class="trust-icon">🏭</div>
         <h3>Factory-Tested</h3>
         <p>Created from real projects at automotive plants, not textbook examples.</p>
       </div>
       <div class="trust-item">
-        <div class="trust-icon">⚡</div>
         <h3>Time-Saving</h3>
         <p>Stop rewriting the same error handling code. Start with something that works.</p>
       </div>
       <div class="trust-item">
-        <div class="trust-icon">📖</div>
         <h3>Well-Documented</h3>
         <p>Every template includes inline comments explaining the why, not just the what.</p>
       </div>
@@ -646,11 +643,6 @@
   
   .trust-item {
     text-align: center;
-  }
-  
-  .trust-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
   }
   
   .trust-item h3 {

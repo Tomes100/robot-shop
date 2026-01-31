@@ -38,13 +38,13 @@
     <div class="loading">Loading order details...</div>
   {:else if error}
     <div class="error">
-      <h1>⚠️ Something went wrong</h1>
+      <h1>Something went wrong</h1>
       <p>{error}</p>
       <a href="/">Back to Shop</a>
     </div>
   {:else}
     <div class="content">
-      <h1>🎉 Thank You!</h1>
+      <h1>Thank You!</h1>
       <p>Your purchase was successful.</p>
       
       {#if session?.customer_email}
@@ -52,7 +52,7 @@
       {/if}
       
       <div class="download-box">
-        <h2>📦 Your Download</h2>
+        <h2>Your Download</h2>
         <p>Click below to download your files:</p>
         <a href="/download/{session?.productId}" class="download-btn">Download Now</a>
       </div>
